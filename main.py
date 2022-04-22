@@ -8,6 +8,11 @@ def read_file(name_file: str, mode="r"):
         FILE_LIST.append(re.sub("\\n", "",line))
     file.close()
 
+def find_name_product(nameProduct: str) -> str:
+    indexNameProduct = FILE_LIST.index(nameProduct)
+    indexUnitProduct = indexNameProduct + 2
+    return FILE_LIST[indexUnitProduct]
+
 def add_product(productsAddedN: int, file):
     for i in range(0, productsAddedN):
         idProduct = int(input("Escriba el codigo del producto: "))
@@ -20,11 +25,13 @@ def add_product(productsAddedN: int, file):
         )
     file.close()
 
-def find_name_product(nameProduct: str) -> str:
-    indexNameProduct = FILE_LIST.index(nameProduct)
-    indexUnitProduct = indexNameProduct + 2
-    return FILE_LIST[indexUnitProduct]
-
+def delete_product(idProduct: int, file):
+    indexIdProduct = FILE_LIST.index(str(idProduct))
+    for index in range(indexIdProduct, indexIdProduct+5):
+        FILE_LIST.pop(indexIdProduct)
+    for line in FILE_LIST:
+        file.write(f"{line}\n")
+    file.close()
 
 if __name__ == '__main__':
     productsAddedN = int(input("Escriba la cantidad de productos que desea ingresar: "))
@@ -44,20 +51,5 @@ if __name__ == '__main__':
     if optionMenu == 3:
         idProduct = int(input("Escriba el código del producto que quiere eliminar"))
         fileInventary = open("./inventario.txt", "w")
-        indexIdProduct = FILE_LIST.index(str(idProduct))
-        for index in range(0, len(FILE_LIST))
-        FILE_LIST.pop(indexIdProduct)
-        print(FILE_LIST)
-        FILE_LIST.pop(indexIdProduct+1)
-        print(FILE_LIST)
-        FILE_LIST.pop(indexIdProduct+2)
-        print(FILE_LIST)
-        FILE_LIST.pop(indexIdProduct+3)
-        print(FILE_LIST)
-        FILE_LIST.pop(indexIdProduct+4)
-        print(FILE_LIST)
-        for line in FILE_LIST:
-            fileInventary.write(f"{line}\n")
-        fileInventary.close()
-
+        delete_product(idProduct, fileInventary)
 
