@@ -1,7 +1,7 @@
 inventario_Prin=[]
 ncant=int(input("Escriba la cantidad de productos que desea ingresar "))
 inv=open("inventario.txt", "w")
-for i in range (0,ncant):
+for i in range(0,ncant):
     nombre=input("Escriba el nombre del producto ")
     codigo=int(input("Escriba el codigo del producto "))
     undidad=input("Escriba la unidad de medida del producto ")
